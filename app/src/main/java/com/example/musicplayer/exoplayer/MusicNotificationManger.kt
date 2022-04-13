@@ -4,6 +4,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.MediaSessionCompat
 import com.bumptech.glide.Glide
@@ -32,9 +33,12 @@ class MusicNotificationManger(
             NOTIFICATION_CHANNEL_ID,
             DescriptionAdapter(mediaController)
         )
+            .setChannelNameResourceId(R.string.notification_channel_name)
+            .setChannelDescriptionResourceId(R.string.notification_channel_description)
             .setSmallIconResourceId(R.drawable.ic_music)
             .setNotificationListener(notificationListener)
             .build()
+
         notificationManager.setMediaSessionToken(sessionToken)
 
     }
